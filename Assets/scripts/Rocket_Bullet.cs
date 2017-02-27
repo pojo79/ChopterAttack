@@ -8,6 +8,7 @@ public class Rocket_Bullet : MonoBehaviour {
     public LayerMask enemyLayer;
     public float rocketExplodeRadius = 10f;
     public float rocketExplodeForce = 30f;
+    public float rocketDamage = 80f;
     public GameObject explosion;
 
     public float lifeSpan = 750f;
@@ -19,7 +20,6 @@ public class Rocket_Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("current time = " + Time.time.ToString() + " liespan left " + (lifeSpan - (Time.time - bornOnDate)));
         if( Time.time - bornOnDate >= lifeSpan)
         {
             Object.Destroy(this.gameObject);
@@ -28,7 +28,7 @@ public class Rocket_Bullet : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Player")
+        if (other.tag != "Player" && other.tag != "Non-Interactable")
         {
             //Debug.Log("colliding with "+ other.tag + other.GetType());
             Collider[] colliders = Physics.OverlapSphere(transform.position, rocketExplodeRadius, enemyLayer);
@@ -42,11 +42,22 @@ public class Rocket_Bullet : MonoBehaviour {
                     continue;
                 }
 
+                EnemyBase enemy = colliders[i].GetComponent<EnemyBase>();
+                enemy.DoDamage(CalculateDamageFromBlast(enemy.transform.position));
                 trb.AddExplosionForce(rocketExplodeForce, transform.position, rocketExplodeRadius);
             }
             GameObject exp = Instantiate(explosion, transform.position, transform.rotation);
 
             Object.Destroy(this.gameObject);
         }
+    }
+
+    private float CalculateDamageFromBlast(Vector3 targetPosition)
+    {
+        Vector3 explosionDistanceToTarget = targetPosition - transform.position;
+
+        float percentRadiusDistance = (rocketExplodeRadius - explosionDistanceToTarget.magnitude)/rocketExplodeRadius;
+
+        return Mathf.Max(0f, percentRadiusDistance * rocketDamage);
     }
 }

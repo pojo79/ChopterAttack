@@ -1,4 +1,10 @@
 sceneSetups:
-- path: Assets/scenes/TestLevel.unity
+- path: Assets/scenes/EndGame.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/scenes/Opening.unity
+  isLoaded: 1
+  isActive: 0
+- path: Assets/scenes/TestLevel.unity
+  isLoaded: 1
+  isActive: 0

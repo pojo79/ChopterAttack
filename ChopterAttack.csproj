@@ -75,9 +75,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\scripts\ExplosionScript.cs" />
+    <Compile Include="Assets\GameManagerScript.cs" />
+    <Compile Include="Assets\scripts\AAMissleScript.cs" />
+    <Compile Include="Assets\scripts\AAShot.cs" />
+    <Compile Include="Assets\scripts\AATurretScript.cs" />
+    <Compile Include="Assets\scripts\EnemyBase.cs" />
     <Compile Include="Assets\scripts\HeliControlScript.cs" />
+    <Compile Include="Assets\scripts\LifeSpanScript.cs" />
+    <Compile Include="Assets\scripts\LifeTimeCountScript.cs" />
+    <Compile Include="Assets\scripts\MenuScript.cs" />
     <Compile Include="Assets\scripts\Rocket_Bullet.cs" />
+    <Compile Include="Assets\scripts\SatteliteScript.cs" />
+    <Compile Include="Assets\scripts\TankEnemy.cs" />
+    <Compile Include="Assets\scripts\UIManagerScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Effects\Projectors\Guidelines.txt" />
